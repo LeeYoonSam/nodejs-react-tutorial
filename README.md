@@ -20,6 +20,7 @@ $ npm install -g nodemon
 
 ### 2. views 폴더에 header.ejs, footer.ejs, error.ejs 생성
 - views/index.ejs 파일에서 header와 footer를 include 해서 사용
+- 디자인은 bootstrap 사용
 
 | 파일명 | 설명 |
 | ------ | ------ |
@@ -28,10 +29,22 @@ $ npm install -g nodemon
 | views/index.ejs | 컨텐츠 영역 |
 | views/error.ejs | 에러 표시 |
 
-### 3. 기본적인 게시판을 만들기위해 필요한 뷰연결
-- 화면에 어떤 뷰인지만 간단하게 표시
+### 3. 기본적인 게시판을 만들기위해 필요한 routes 추가
+- 화면에 어떤 routes가 연결되었는지 간단하게 표시
+
+| 라우터명 | 설명 |
+| ------ | ------ |
+| routes/accounts | 계정(로그인/회원가입) 관련 라우터 |
+| routes/chat | 채팅 관련 라우터 |
+| routes/posts | 게시글 관련 라우터 |
+
+- routes 작성 후 app.js -> Router 추가
+
+### 4. 기본적인 게시판을 만들기위해 필요한 views 추가
+- 화면에 뷰 세팅(데이터 없음)
+
 | 폴더명 | 설명 |
 | ------ | ------ |
-| account | 계정(로그인/회원가입) 관련 폴더 |
-| chat | 채팅 관련 폴더 |
-| post | 게시글 관련 폴더 |
+| views/account | 계정(로그인/회원가입) 관련 폴더 |
+| views/chat | 채팅 관련 폴더 |
+| views/post | 게시글 관련 폴더 |
