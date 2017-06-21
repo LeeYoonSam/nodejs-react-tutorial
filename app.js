@@ -5,6 +5,30 @@ var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 
+// === 몽고디비 관련 세팅 시작 ===
+var mongoose = require("mongoose");
+/*
+mongoose v4 이상의 버전부터 mongoose의 save()와 쿼리같은 비동기 동작에서는 Promises/A+ conformant pomises를 반환하게 되어있다.
+*/
+mongoose.Promise = global.Promise;
+
+var autoIncrement = require("mongoose-auto-increment");
+
+// 몽구스 연결 상태 로그 - 몽고 디비가 연결되면 console에 표시(없어도 상관없음)
+var db = mongoose.connection;
+db.on("error", console.error);
+db.on("open", function() {
+  console.log("MongoDB Connect");
+});
+
+// 몽고디비 연결 - 'exercise' 라는 컬렉션을 사용
+var connect = mongoose.connect("mongodb://127.0.0.1:27017/exercise");
+
+// autoIncrement 초기화
+autoIncrement.initialize(connect);
+// === 몽고디비 관련 세팅 끝 ===
+
+// 라우트 관련 세팅
 var index = require("./routes/index");
 var users = require("./routes/users");
 // routes 가져오기

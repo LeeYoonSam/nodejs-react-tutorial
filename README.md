@@ -10,17 +10,18 @@ $ cd myapp
 $ npm install
 $ npm start
 ```
-- 브라우저에서 http://localhost:3000 접속 확인
+
+ * 브라우저에서 http://localhost:3000 접속 확인
 
 ```sh
 $ npm install -g nodemon
 ```
-- package.json > script > start > node -> nodemon 으로 변경해주면 소스 수정시 재시작 필요 없이 바로 적용
+ * package.json > script > start > node -> nodemon 으로 변경해주면 소스 수정시 재시작 필요 없이 바로 적용
 
 
 ### 2. views 폴더에 header.ejs, footer.ejs, error.ejs 생성
-- views/index.ejs 파일에서 header와 footer를 include 해서 사용
-- 디자인은 bootstrap 사용
+ * views/index.ejs 파일에서 header와 footer를 include 해서 사용
+ * 디자인은 bootstrap 사용
 
 | 파일명 | 설명 |
 | ------ | ------ |
@@ -29,8 +30,9 @@ $ npm install -g nodemon
 | views/index.ejs | 컨텐츠 영역 |
 | views/error.ejs | 에러 표시 |
 
+
 ### 3. 기본적인 게시판을 만들기위해 필요한 routes 추가
-- 화면에 어떤 routes가 연결되었는지 간단하게 표시
+ * 화면에 어떤 routes가 연결되었는지 간단하게 표시
 
 | 라우터명 | 설명 |
 | ------ | ------ |
@@ -38,10 +40,11 @@ $ npm install -g nodemon
 | routes/chat | 채팅 관련 라우터 |
 | routes/posts | 게시글 관련 라우터 |
 
-- routes 작성 후 app.js -> Router 추가
+ * routes 작성 후 app.js -> Router 추가
+
 
 ### 4. 기본적인 게시판을 만들기위해 필요한 views 추가
-- 네비메뉴 선택시 화면 렌더링(데이터는 없고 기본 틀만 작성한 상태)
+ * 네비메뉴 선택시 화면 렌더링(데이터는 없고 기본 틀만 작성한 상태)
 
 | 폴더명 | 설명 |
 | ------ | ------ |
@@ -49,7 +52,30 @@ $ npm install -g nodemon
 | views/chat | 채팅 관련 폴더 |
 | views/post | 게시글 관련 폴더 |
 
+
+ * routes/xxx.js에서 화면 렌더링시 첫번째 인자값으로 view path가 온다.
+    render(view: string, options?: Object, callback?: (err: Error, html: string) => void): void; 
+
+
+### 5. 몽고디비 설치 & 연결
+> 설치
+
+```sh
+$ npm install --save mongodb mongoose mongoose-auto-increment
 ```
-routes/xxx.js에서 화면 렌더링시 첫번째 인자값으로 view path가 온다.
-render(view: string, options?: Object, callback?: (err: Error, html: string) => void): void; 
-```
+
+| 폴더명 | 설명 |
+| ------ | ------ |
+| mongodb | 몽고디비 |
+| mongoose | 스키마 작성, 캐스팅, 유효성 검사, 쿼리 작성등을 도와주는 라이브러리 |
+| mongoose-auto-increment | id값을 자동으로 생성해주는 라이브러리(이름, 증가치 등의 상세 설정 가능) |
+
+> 연결
+app.js 몽고디비 관련 세팅 및 연결 추가
+
+
+### 6. MongoDB 사용하기
+> Model을 만들어서 mongoose schema를 작성
+
+
+
