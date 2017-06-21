@@ -41,10 +41,15 @@ $ npm install -g nodemon
 - routes 작성 후 app.js -> Router 추가
 
 ### 4. 기본적인 게시판을 만들기위해 필요한 views 추가
-- 화면에 뷰 세팅(데이터 없음)
+- 네비메뉴 선택시 화면 렌더링(데이터는 없고 기본 틀만 작성한 상태)
 
 | 폴더명 | 설명 |
 | ------ | ------ |
 | views/account | 계정(로그인/회원가입) 관련 폴더 |
 | views/chat | 채팅 관련 폴더 |
 | views/post | 게시글 관련 폴더 |
+
+```
+routes/xxx.js에서 화면 렌더링시 첫번째 인자값으로 view path가 온다.
+render(view: string, options?: Object, callback?: (err: Error, html: string) => void): void; 
+```

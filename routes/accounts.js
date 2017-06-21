@@ -6,12 +6,12 @@ var router = express.Router();
 
 // 회원가입
 router.get("/join", (req, res) => {
-  res.end("join");
+  res.render("accounts/join");
 });
 
 // 로그인
 router.get("/login", (req, res) => {
-  res.end("login");
+  res.render("accounts/login");
 });
 
 module.exports = router;

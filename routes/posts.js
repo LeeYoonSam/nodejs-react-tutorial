@@ -4,7 +4,11 @@ var router = express.Router();
 
 // === POST 관련 ===
 router.get("/", (req, res) => {
-  res.end("posts");
+  res.render("posts/list");
+});
+
+router.get("/write", function(req, res) {
+  res.render("posts/form");
 });
 
 module.exports = router;
