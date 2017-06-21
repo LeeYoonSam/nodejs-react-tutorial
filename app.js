@@ -21,8 +21,8 @@ db.on("open", function() {
   console.log("MongoDB Connect");
 });
 
-// 몽고디비 연결 - 'exercise' 라는 컬렉션을 사용
-var connect = mongoose.connect("mongodb://127.0.0.1:27017/exercise");
+// 몽고디비 연결 - 'board' 라는 DB를 사용
+var connect = mongoose.connect("mongodb://127.0.0.1:27017/board");
 
 // autoIncrement 초기화
 autoIncrement.initialize(connect);

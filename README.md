@@ -58,6 +58,7 @@ $ npm install -g nodemon
 
 
 ### 5. 몽고디비 설치 & 연결
+
 > 설치
 
 ```sh
@@ -72,10 +73,15 @@ $ npm install --save mongodb mongoose mongoose-auto-increment
 
 > 연결
 app.js 몽고디비 관련 세팅 및 연결 추가
+선행작업 : 터미널에서 mongod 로 몽고디비 실행
 
 
-### 6. MongoDB 사용하기
-> Model을 만들어서 mongoose schema를 작성
+### 6. MongoDB 사용하기 & 게시글 리스트/상세/작성/삭제 추가
+
+> 모델 생성(스키마)
+mongoose schema 를 사용해서 Model을 만든다.
 
 
-
+* 생성된 모델을 사용해서 find, save, remove 사용
+  - routes/posts에서 라우팅이 연결되면 MongoDB를 사용해서 데이터 관리
+  - 데이터 관리 및 가공해서 /views/posts 로 이동 및 데이터 전달

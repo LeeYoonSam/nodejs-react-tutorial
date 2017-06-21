@@ -7,16 +7,21 @@
             <td>삭제</td>
         </tr>
 
-
-        <tr>
-            <td>
-                제목 영역
-            </td>
-            <td>
-                2017년 6월 21일
-            </td>
-            <td><a href="" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</a></td>
-        </tr>
+        <% posts.forEach( function(post) { %>
+            <tr>
+                <td>
+                    <a href="/posts/detail/<%=post.id%>">
+                        <%=post.title%>
+                    </a>
+                </td>
+                <td>
+                    <%=post.getDate.year%>년
+                        <%=post.getDate.month%>월
+                            <%=post.getDate.day%>일
+                </td>
+                <td><a href="/posts/delete/<%=post.id%>" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</a></td>
+            </tr>
+            <% }); %>
 
     </table>
 
