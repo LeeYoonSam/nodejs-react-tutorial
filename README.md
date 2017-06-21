@@ -71,14 +71,15 @@ $ npm install --save mongodb mongoose mongoose-auto-increment
 | mongoose | 스키마 작성, 캐스팅, 유효성 검사, 쿼리 작성등을 도와주는 라이브러리 |
 | mongoose-auto-increment | id값을 자동으로 생성해주는 라이브러리(이름, 증가치 등의 상세 설정 가능) |
 
-> 연결
+**연결**
 app.js 몽고디비 관련 세팅 및 연결 추가
 선행작업 : 터미널에서 mongod 로 몽고디비 실행
 
 
 ### 6. MongoDB 사용하기 & 게시글 리스트/상세/작성/삭제 추가
 
-> 모델 생성(스키마)
+**모델 생성(스키마)**
+
 mongoose schema 를 사용해서 Model을 만든다.
 
 
