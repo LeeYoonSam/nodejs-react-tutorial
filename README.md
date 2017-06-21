@@ -78,7 +78,7 @@ $ npm install --save mongodb mongoose mongoose-auto-increment
 
 ### 6. MongoDB 사용하기 & 게시글 리스트/상세/작성/삭제 추가
 
-*모델 생성(스키마)
+* 모델 생성(스키마)
   - mongoose schema 를 사용해서 Model을 만든다.
 
 
