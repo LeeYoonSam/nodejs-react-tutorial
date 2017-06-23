@@ -5,9 +5,12 @@ var autoIncrement = require("mongoose-auto-increment");
 var PostSchema = new Schema({
   title: {
     type: String,
-    required: [true, "제목은 입력해주세요"] // validation 처리
+    required: [true, "제목을 입력해주세요"] // validation 처리
   },
-  content: String,
+  content: {
+    type: String,
+    required: [true, "내용을 입력해주세요"] // validation 처리
+  },
   thumbnail: String,
   created_at: {
     type: Date,

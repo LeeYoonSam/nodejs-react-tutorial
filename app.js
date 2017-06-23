@@ -50,6 +50,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// 업로드 path 추가
+app.use("/uploads", express.static("uploads"));
+
 app.use("/", index);
 app.use("/users", users);
 

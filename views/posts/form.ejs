@@ -1,23 +1,43 @@
 <% include ../header.ejs %>
     <!-- 작성하기를 누르면 post 방식으로 posts/write 호출 -->
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
         <table class="table table-bordered">
             <tr>
                 <td>제목</td>
                 <td>
-                    <input type="text" name="title" class="form-control" />
+                    <input type="text" name="title" class="form-control" value="<%=post.title%>" />
                 </td>
             </tr>
             <tr>
                 <td>내용</td>
                 <td>
-                    <input type="text" name="content" class="form-control">
+                    <input type="text" name="content" class="form-control" value="<%=post.content%>" />
+                </td>
+            </tr>
+
+            <tr>
+                <th>이미지 첨부</th>
+                <td>
+                    <input type="file" name="thumbnail" />
+                    <% if(post.thumbnail){ %>
+                        <a href="/uploads/<%=post.thumbnail%>" target="_blank">업로드 이미지 보기</a>
+                        <% } %>
                 </td>
             </tr>
 
         </table>
 
-        <button class="btn btn-primary">작성하기</button>
+
+
+        <button class="btn btn-primary">
+            <% if(post === "") { %>
+                작성하기
+            <% } else { %>
+                수정하기
+            <% } %>
+
+                </button>
     </form>
 
     <% include ../footer.ejs %>

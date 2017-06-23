@@ -1,5 +1,7 @@
 # nodejs-react-tutorial
 
+---
+
 ## Step 1
 
 ### 1. express-generator로 ejs 프로젝트 만들기
@@ -85,3 +87,97 @@ $ npm install --save mongodb mongoose mongoose-auto-increment
 * 생성된 모델을 사용해서 find, save, remove 사용
   - routes/posts에서 라우팅이 연결되면 MongoDB를 사용해서 데이터 관리
   - 데이터 관리 및 가공해서 /views/posts 로 이동 및 데이터 전달
+
+
+---
+
+## Step 2
+
+### 7. 게시글 수정
+* 수정시 글쓰기 화면에 다시 내용을 복구(이렇게 내용을 복구하게 하면 그냥 작성시에 post가 없어서 에러가 나기때문에 `{ post:"" }` 로 빈값을 세팅해준다.)
+* 수정된 내용을 MongoDB에 update
+
+
+### 8. 게시글 상세에서 댓글 구현 (ajax 통신구현)
++views
++-header.ejs
+
+* 위 경로에 jQuery를 불러오는 스크립트가 선언되어 있다.
+
+* 왜 comment는 ajax로 구현하는가?
+ - 댓글을 작성헤도 페이지에 변동이 없도록 하기위해
+
+* CommentModel을 생성해서 Schema를 구현
+* 댓글 추가/삭제 route 만들어서 json으로 리턴 후 view단에서 jQuery, ajax form 전송을 통해서 뷰 갱신
+* detail:id/ 부분에서 게시글 상세와 댓글을 같이 넘여야 하므로 MongoDB 쿼리 중첩으로 한번에 전달한다. `{ post, comments }`
+
+### 9. 유효성 확인(Validation Check)
+* Mongoose에서 Schema를 만들때 validation 생성
+
+```javascript
+// 구현
+var PostSchema = new Schema({
+  title: {
+    type: String,
+    required: [true, "제목을 입력해주세요"] // validation 처리
+  }
+});
+
+// 사용
+var post = new PostModel({
+    title: req.body.title
+  });
+
+  // validation 확인
+  var validationError = post.validateSync();
+  if (validationError) {
+    
+  } else {
+    
+  }
+```
+
+### 10. CSRF(Cross-Site Request forgery) 적용
+
+> 설치
+
+```sh
+$ npm install --save csurf
+```
+
+* 어떤 문제를 발생할수 있는가?
+    - 사용자가 자신의 의지와는 무관하게 글을 등록, 수정, 삭제를 요청(2008년 옥션 해킹에도 사용된 기법)
+    - action을 보고 어떤 URL로 폼을 전송하는지 보고 action의 위치로 필드명만 일치한 폼을 전송(hidden으로 감싸서 안보이게 처리)
+
+* CSRF 방어법 (토큰 발행)
+    - 클라이언트, 서버 토큰 발행 -> 글 작성전 서버에서 생성한 토큰과 일치확인 (hidden 타입으로 서버에서 발행한 토큰을 넘겨주고 router에서 일치하는지 확인)
+    - form 전송이 있는곳에 전부 적용
+
+* 테스트
+    - form.ejs, detail.ejs에서 <form> 아래 hidden type으로 숨어있는 csrf token을 주석처리하고 테스트 해보면 에러가 발생
+
+
+### 11. Multer - 이미지 업로드
+
+> 설치
+
+```sh
+$ npm install --save multer
+```
+
+* Multer란?
+    - 웹 파일 전송 방식중에서 multipart/form-data 방식을 지원해주는 모듈
+
+* 적용순서
+  1. npm으로 multer 설치
+  2. DB에 저장될 필드 수정(PostModel)
+  3. 파일을 업로드할 uploads 폴더 생성
+  4. app.js에 static path 추가
+  5. router 처리(게시글 쓰기, 수정) / 수정, 쓰기 파일에서 <form>안에 enctype="multipart/form-data" 속성 추가
+  6. detail 이미지 보여주기
+
+* 파일삭제
+  - 내장 fs(파일시스템) 사용 `fs.unlink(path, function(error){});`
+
+
+
