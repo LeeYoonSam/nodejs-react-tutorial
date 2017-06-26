@@ -99,8 +99,8 @@ $ npm install --save mongodb mongoose mongoose-auto-increment
 
 
 ### 8. 게시글 상세에서 댓글 구현 (ajax 통신구현)
-+views
-+-header.ejs
+views
+└─ header.ejs
 
 * 위 경로에 jQuery를 불러오는 스크립트가 선언되어 있다.
 
@@ -177,7 +177,44 @@ $ npm install --save multer
   6. detail 이미지 보여주기
 
 * 파일삭제
-  - 내장 fs(파일시스템) 사용 `fs.unlink(path, function(error){});`
+  - 내장모듈 fs(파일시스템) 사용
 
+  ```javascript
+  // 비동기식 삭제
+  fs.unlink(PATH, function(error){});
+  
+
+  // 동기식 삭제
+  fs.unlinkSync(PATH);
+  ```
+
+
+### 12. Passport 회원가입 / 로그인
+
+* 회원가입 구현순서
+ 1. UserModel 작성
+ 2. accounts router 작성
+ 3. 회원가입 폼 작성
+ 4. 로그인 폼 작성
+ 5. 비밀번호 암호화 내부모듈 작성
+  - libs
+    └─ passwordHash.js
+
+* 로그인 구현순서
+ 1. passport 모듈 설치
+  > 설치
+
+  ```sh
+  $ npm install –-save express-session
+  $ npm install --save passport
+  $ npm install –-save passport-local
+  $ npm install –-save connect-flash
+  ```
+
+ 2. app.js 설정
+  - 설치한 모듈 설정
+
+ 3. accounts router - passport 적용
+ 4. flash 메시지 적용
 
 

@@ -9,17 +9,17 @@
                     <form role="form" action="" id="join_form" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="ID" name="username" type="text" autofocus="" required="">
+                                <input class="form-control" placeholder="ID" name="username" type="text" autofocus="">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="" required="">
+                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password 확인" name="password2" type="password" value="" required="">
+                                <input class="form-control" placeholder="Password 확인" name="password2" type="password" value="">
                             </div>
 
                             <div class="form-group">
-                                <input class="form-control" placeholder="이름" name="displayname" type="text" value="" required="">
+                                <input class="form-control" placeholder="이름" name="displayname" type="text" value="">
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <input type="submit" class="btn btn-lg btn-success btn-block" value="가입하기">
@@ -55,6 +55,10 @@
                         return false;
                     }
                     if ($passwordInput.val() !== $passwordInput2.val()) {
+                        $passwordInput.val("");
+                        $passwordInput2.val("");
+                        $passwordInput.focus();
+
                         alert("패스워드와 확인용패스워드를 똑같이 입력해주세요.");
                         return false;
                     }

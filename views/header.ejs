@@ -32,8 +32,12 @@
                         </li>
                         <li><a href="/posts">Posts</a></li>
                         <li><a href="/chat">Chat</a></li>
-                        <li><a href="/accounts/join">JOIN</a></li>
-                        <li><a href="/accounts/login">LOGIN</a></li>
+                        <% if(isLogin){%>
+                            <li><a href="/accounts/logout" onclick="return confirm('로그아웃 하시겠습니까?')">LOGOUT</a></li>
+                            <%}else{%>
+                                <li><a href="/accounts/join">JOIN</a></li>
+                                <li><a href="/accounts/login">LOGIN</a></li>
+                                <%}%>
 
                     </ul>
                 </div>
