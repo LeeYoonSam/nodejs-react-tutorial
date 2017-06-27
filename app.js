@@ -117,4 +117,8 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
+//socket io 셋팅
+app.io = require("socket.io")();
+require("./libs/socketConnection")(app.io);
+
 module.exports = app;

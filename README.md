@@ -258,4 +258,23 @@ $ npm install --save multer
     └─ index.ejs
 
 
+### 14. Socket.io 채팅 구현
+
+* socket.io 작동흐름
+  1. 웹 페이지 접속
+  2. 클라이언트 서버간의 연결관계 맺기
+  3. 서버에 이벤트로 emit
+  4. 전체 클라이언트에 메시지 전달
+
+* 채팅 구현순서
+  1. npm 설치(socket.io)
+      > 설치
+      
+      ```sh
+      $ npm install –-save socket.io
+      ```
+
+  2. 소켓 연결 코드 작성
+  3. 채팅화면 메시지 처리
+ 
 

@@ -59,4 +59,28 @@
         }
     </style>
 
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        (function () {
+
+            var socket = io();
+
+            socket.on('chat message', function (data) {
+                $('#chatBody').append('<li>' + data + '</li>');
+            });
+
+            $(document).ready(function () {
+                $('#sendForm').submit(function () {
+                    var $massage = $('#sendForm input[name=message]');
+                    socket.emit('chat message', {
+                        message: $massage.val()
+                    });
+                    $massage.val('');
+                    return false;
+                });
+            });
+
+        })();
+    </script>
+
     <% include ../footer.ejs %>
