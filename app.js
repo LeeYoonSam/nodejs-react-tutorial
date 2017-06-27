@@ -5,6 +5,13 @@ var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 
+// flash 메시지
+var flash = require("connect-flash");
+
+// passport 로그인
+var passport = require("passport");
+var session = require("express-session");
+
 // === 몽고디비 관련 세팅 시작 ===
 var mongoose = require("mongoose");
 /*
@@ -35,6 +42,7 @@ var users = require("./routes/users");
 var posts = require("./routes/posts");
 var accounts = require("./routes/accounts");
 var chat = require("./routes/chat");
+var auth = require("./routes/auth");
 
 var app = express();
 
@@ -50,6 +58,38 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// 업로드 path 추가
+app.use("/uploads", express.static("uploads"));
+
+//=== 미들웨어는 꼭 라우팅 위에 선언해야함 ===
+//session 관련 셋팅
+// 미들웨어로 변경
+var sessionMiddleWare = session({
+  secret: "yourSecret",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 2000 * 60 * 60 //지속시간 2시간
+  }
+});
+app.use(sessionMiddleWare);
+
+//passport 적용
+app.use(passport.initialize());
+app.use(passport.session());
+
+// 플래시 메시지 관련
+app.use(flash());
+
+// 로그인 정보 뷰에서만 변수로 셋팅, 전체 미들웨어는 router 위에 두어야 에러가 안난다.
+app.use(function(req, res, next) {
+  app.locals.isLogin = req.isAuthenticated();
+  // app.locals.urlparameter = req.url; // 현재 URL 정보를 보내고 싶으면 이와같이 세팅
+  // app.locals.userData = req.user; // 사용자 정보를 보내고 싶으면 이와 같이 세팅
+  next();
+});
+
+// === 라우트 세팅 ===
 app.use("/", index);
 app.use("/users", users);
 
@@ -57,6 +97,7 @@ app.use("/users", users);
 app.use("/posts", posts);
 app.use("/accounts", accounts);
 app.use("/chat", chat);
+app.use("/auth", auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -75,5 +116,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+//socket io 셋팅 - passport 접근하기 위한 미들웨어 적용
+app.io = require("socket.io")();
+
+app.io.use(function(socket, next) {
+  sessionMiddleWare(socket.request, socket.request.res, next);
+});
+
+require("./libs/socketConnection")(app.io);
 
 module.exports = app;
