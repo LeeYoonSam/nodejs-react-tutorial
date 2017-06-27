@@ -99,8 +99,10 @@ $ npm install --save mongodb mongoose mongoose-auto-increment
 
 
 ### 8. 게시글 상세에서 댓글 구현 (ajax 통신구현)
+```
 views
 └─ header.ejs
+```
 
 * 위 경로에 jQuery를 불러오는 스크립트가 선언되어 있다.
 
@@ -197,8 +199,10 @@ $ npm install --save multer
  3. 회원가입 폼 작성
  4. 로그인 폼 작성
  5. 비밀번호 암호화 내부모듈 작성
+ ```
     libs
     └─ passwordHash.js
+```
 
 * 로그인 구현순서
  1. passport 모듈 설치
@@ -222,8 +226,10 @@ $ npm install --save multer
   1. 페이스북 개발자 등록
   2. Facebook 앱 ID 발급 (https://developers.facebook.com에서 appId 및 scretID 발급)
   3. 소스코드 작성
+  ```
     routes
     └─ auth.js
+  ```
 
   * 소스코드 작성 순서
     1. npm 설치(passport-facebook)
@@ -246,16 +252,21 @@ $ npm install --save multer
 * 메인화면 구현순서
   1. PostModel 작성자 필드 추가
   2. loginRequired 내부모듈 추가
+  ```
     libs
     └─ loginRequired.js
+  ```
   
   3. 글 작성시 작성자 추가 | 게시판 작성/수정 시 로그인 체크(loginRequired 사용)
+  ```
     routes
     └─ posts.js
-
+  ```
   4. masonry를 사용해서 핀터레스트 UI 적용
+  ```
     views
     └─ index.ejs
+  ```
 
 
 ### 14. Socket.io 채팅 구현
@@ -283,23 +294,27 @@ $ npm install --save multer
   1. 서버측 socket 이벤트시 passport 로그인 정보에 접근할수 있도록 미들웨어 작성
   2. 채팅피에지 접속/이탈시 회원리스트 갱신(서버/클라이언트 양측 구현)
   3. 로그인 체크 구현
+  ```
     routes
       └─ chat.js
+  ```
 
   * 서버측 구현순서
     1. 소켓 접속시 사용자 정보 갱신
     2. 채팅방 접속/종료시 처리
     3. 메시지 송/수신 처리
-
+    
+    ```
     libs
     └─ socketConnection.js
+    ```
 
   * 클라이언트 구현순서
     1. 유저목록 갱신
     2. 접속/종료시 처리
-
+    ```
     views
     └─ chat
         └─ chat.ejs
-
+    ```
     
