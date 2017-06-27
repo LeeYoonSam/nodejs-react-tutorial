@@ -51,7 +51,8 @@ router.get("/facebook", passport.authenticate("facebook", { scope: "email" }));
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
-    successRedirect: "/auth/facebook/success",
+    // successRedirect: "/auth/facebook/success",
+    successRedirect: "/posts", // 로그인 성공하면 게시판으로 이동
     failureRedirect: "/auth/facebook/fail"
   })
 );

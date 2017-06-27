@@ -238,3 +238,4 @@ $ npm install --save multer
     4. callback 페이지 작성
     5. 리다이렉트 페이지 작성
     6. app.js router 연결
+    7. header.ejs 로그인 상태에 맞게 UI 변경 - app.locals(로컬 변수)를 사용해서 로그인/로그아웃 여부를 어디에서나 알수있게 설정.

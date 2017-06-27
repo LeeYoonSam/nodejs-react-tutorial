@@ -32,6 +32,7 @@
                         </li>
                         <li><a href="/posts">Posts</a></li>
                         <li><a href="/chat">Chat</a></li>
+                        <!-- 로그인 상태에 따라 로그인/회원가입 or 로그아웃 상태 UI 변경-->
                         <% if(isLogin){%>
                             <li><a href="/accounts/logout" onclick="return confirm('로그아웃 하시겠습니까?')">LOGOUT</a></li>
                             <%}else{%>
