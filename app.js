@@ -117,8 +117,13 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-//socket io 셋팅
+//socket io 셋팅 - passport 접근하기 위한 미들웨어 적용
 app.io = require("socket.io")();
+
+app.io.use(function(socket, next) {
+  sessionMiddleWare(socket.request, socket.request.res, next);
+});
+
 require("./libs/socketConnection")(app.io);
 
 module.exports = app;

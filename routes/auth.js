@@ -23,7 +23,7 @@ passport.use(
       profileFields: ["id", "displayName", "photos", "email"] //받고 싶은 필드 나열
     },
     function(accessToken, refreshToken, profile, done) {
-      UserModel.findOne({ username: profile._json.email }, function(err, user) {
+      UserModel.findOne({ username: "fb_" + profile.id }, function(err, user) {
         // 해당하는 유저가 존재하지 않으면 회원가입 후 로그인 성공페이지 이동
         if (!user) {
           var regData = {
