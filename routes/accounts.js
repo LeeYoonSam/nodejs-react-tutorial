@@ -68,7 +68,8 @@ router.get("/join", (req, res) => {
 router.post("/join", (req, res) => {
   var user = new UserModel({
     username: req.body.username,
-    password: passwordHash(req.body.password)
+    password: passwordHash(req.body.password),
+    displayname: req.body.displayname
   });
 
   // validation 확인

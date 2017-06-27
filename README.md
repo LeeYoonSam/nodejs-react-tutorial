@@ -239,3 +239,23 @@ $ npm install --save multer
     5. 리다이렉트 페이지 작성
     6. app.js router 연결
     7. header.ejs 로그인 상태에 맞게 UI 변경 - app.locals(로컬 변수)를 사용해서 로그인/로그아웃 여부를 어디에서나 알수있게 설정.
+
+
+### 13. 메인화면(핀터레스트 UI 적용)
+
+* 메인화면 구현순서
+  1. PostModel 작성자 필드 추가
+  2. loginRequired 내부모듈 추가
+    libs
+    └─ loginRequired.js
+  
+  3. 글 작성시 작성자 추가 | 게시판 작성/수정 시 로그인 체크(loginRequired 사용)
+    routes
+    └─ posts.js
+
+  4. masonry를 사용해서 핀터레스트 UI 적용
+    views
+    └─ index.ejs
+
+
+

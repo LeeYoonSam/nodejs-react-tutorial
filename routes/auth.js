@@ -27,8 +27,9 @@ passport.use(
         // 해당하는 유저가 존재하지 않으면 회원가입 후 로그인 성공페이지 이동
         if (!user) {
           var regData = {
-            username: profile._json.email,
-            password: "facebook_login"
+            username: "fb_" + profile.id,
+            password: "facebook_login",
+            displayname: profile.displayName
           };
 
           var User = new UserModel(regData);
