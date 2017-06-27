@@ -42,6 +42,7 @@ var users = require("./routes/users");
 var posts = require("./routes/posts");
 var accounts = require("./routes/accounts");
 var chat = require("./routes/chat");
+var auth = require("./routes/auth");
 
 var app = express();
 
@@ -96,6 +97,7 @@ app.use("/users", users);
 app.use("/posts", posts);
 app.use("/accounts", accounts);
 app.use("/chat", chat);
+app.use("/auth", auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

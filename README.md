@@ -197,7 +197,7 @@ $ npm install --save multer
  3. 회원가입 폼 작성
  4. 로그인 폼 작성
  5. 비밀번호 암호화 내부모듈 작성
-  - libs
+    libs
     └─ passwordHash.js
 
 * 로그인 구현순서
@@ -218,3 +218,23 @@ $ npm install --save multer
  4. flash 메시지 적용
 
 
+* 페이스북 로그인 구현순서
+  1. 페이스북 개발자 등록
+  2. Facebook 앱 ID 발급 (https://developers.facebook.com에서 appId 및 scretID 발급)
+  3. 소스코드 작성
+    routes
+    └─ auth.js
+
+  * 소스코드 작성 순서
+    1. npm 설치(passport-facebook)
+      > 설치
+      
+      ```sh
+      $ npm install –-save passport-facebook
+      ```
+      
+    2. FacebookStrategy 작성
+    3. 인증링크 생성
+    4. callback 페이지 작성
+    5. 리다이렉트 페이지 작성
+    6. app.js router 연결
